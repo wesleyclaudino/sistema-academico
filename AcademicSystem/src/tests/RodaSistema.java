@@ -16,55 +16,64 @@ import model.*;
 public class RodaSistema {
 	@SuppressWarnings("null")
 	public static void main(String[] args) {
-		
-		//Mudança de nomes das opções do JOptionPaneConfirm
+		boolean continua = false;
+		int opcao;
+
+		// Mudança de nomes das opções do JOptionPaneConfirm
 		UIManager.put("OptionPane.yesButtonText", "Sim");
 		UIManager.put("OptionPane.noButtonText", "Não");
 		UIManager.put("OptionPane.cancelButtonText", "Cancelar");
+		UIManager.put("OptionPane.okButtonText", "Enviar");
 
-		// Instanciação dos objetos para teste.
-		Aluno aluno = new Aluno();
-		Curso cursos = new Curso();
-		
-//		ArrayList<Curso> cursos = new ArrayList<>();
-		
-		// Telas
-		String telaNome = JOptionPane.showInputDialog("Digite seu nome: ");
-		String telaMatricula = JOptionPane.showInputDialog("Digite sua matrícula: ");
-		String telaBim1 = JOptionPane.showInputDialog("Nota do primeiro bimestre: ");
-		String telaBim2 = JOptionPane.showInputDialog("Nota do segundo bimestre: ");
-		int telaNovoCurso = JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?");
-		String telaNomeCurso = JOptionPane.showInputDialog("Insira um novo curso: ");
-		String telaNomeDisciplina = JOptionPane.showInputDialog("Insira uma nova disciplina: ");
+		// Fluxo de inserção do Aluno
+		do {
+			// Tela inicial
+			opcao = JOptionPane.showConfirmDialog(null, "Deseja adicionar um aluno? ", "Aluno",
+					JOptionPane.YES_NO_CANCEL_OPTION);
 
-		// Inserção de dados do aluno utilizando o swing.
-		aluno.setNomeDoAluno(telaNome);
-		aluno.setMatricula(Integer.parseInt(telaMatricula));
-		aluno.adicionarCursos(telaNomeCurso);
-		aluno.adicionarDisciplina(telaNomeDisciplina);
-		aluno.setNota1(Double.parseDouble(telaBim1));
-		aluno.setNota2(Double.parseDouble(telaBim2));
-		aluno.setNotaSem();
+			if (opcao == JOptionPane.OK_OPTION) {
+				// Instanciando o objeto para uso
+				Aluno aluno = new Aluno();
 
-		// Adição de novos cursos
-		System.out.println(telaNovoCurso);
-		if(telaNovoCurso == JOptionPane.OK_OPTION) {
-			cursos.adicionarCursos(telaNomeCurso);
-			cursos.adicionarDisciplina(telaNomeDisciplina);
-		}
-		
-//		System.out.println(cursos.getNomeDoCurso());
+				// Inserção de dados do aluno
+				aluno.setNomeDoAluno(JOptionPane.showInputDialog("Digite seu nome: "));
+				aluno.setMatricula(Integer.parseInt(JOptionPane.showInputDialog("Digite sua matrícula: ")));
+				aluno.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
+				aluno.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
+				aluno.setNota1(Double.parseDouble(JOptionPane.showInputDialog("Nota do primeiro bimestre: ")));
+				aluno.setNota2(Double.parseDouble(JOptionPane.showInputDialog("Nota do segundo bimestre: ")));
+				aluno.setNotaSem();
 
-		// Apresentação de dados no console
-			// Controle de notas dos alunos
-		System.out.println("Aluno: " + aluno.getNomeDoAluno() +
-							"\nMatrícula: " + aluno.getMatricula() +
-							"\nCursos matriculados: " + aluno.getCursos() +
-							"\nDisciplinas cursadas: " + aluno.getDisciplinas() +
-							"\nNota 1º Bimestre: " + aluno.getNota1() +
-							"\nNota 2º Bimestre: " + aluno.getNota2() +
-							"\nNota Semestral: " + aluno.getNotaSem());
-		System.out.println("Cursos: " + cursos.getCursos());
-		System.out.println("Disciplinas do curso: " + cursos.getDisciplinas());
+				continua = true;
+			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
+				continua = false;
+			}
+		} while (continua == true && opcao != JOptionPane.CANCEL_OPTION || opcao != JOptionPane.NO_OPTION);
+
+		// Fluxo de inserção do Curso
+		do {
+			// Tela inicial
+			opcao = JOptionPane.showConfirmDialog(null, "Deseja adicionar um curso? ", "Curso",
+					JOptionPane.YES_NO_CANCEL_OPTION);
+
+			if (opcao == JOptionPane.OK_OPTION) {
+				// Instanciando o objeto para uso
+				Curso cursos = new Curso();
+
+				// Inserção de dados do curso
+				System.out.println(JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?"));
+				if (JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?") == JOptionPane.OK_OPTION) {
+					cursos.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
+					cursos.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
+					continua = true;
+				} else if (JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?") == JOptionPane.NO_OPTION || JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?") == JOptionPane.CANCEL_OPTION) {
+					continua = false;
+				}
+
+				continua = true;
+			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
+				continua = false;
+			}
+		} while (continua == true && opcao != JOptionPane.CANCEL_OPTION || opcao != JOptionPane.NO_OPTION);
 	}
 }
