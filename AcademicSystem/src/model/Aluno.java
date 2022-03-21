@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Aluno {
@@ -14,11 +13,19 @@ public class Aluno {
 	private double notaSem;
 	
 	public void adicionarCursos(String curso) {
-		cursos.add(curso);
+		if (cursos.contains(curso)) {
+			System.out.println("Curso, já adicionado.");
+		} else {
+			cursos.add(curso);
+		}
 	}
 
 	public void adicionarDisciplina(String disciplina) {
-		disciplinas.add(disciplina);
+		if(disciplinas.contains(disciplina)) {
+			System.out.println("Disciplina já adicionada.");
+		}else {
+			disciplinas.add(disciplina);
+		}
 	}
 
 	public String getNomeDoAluno() {

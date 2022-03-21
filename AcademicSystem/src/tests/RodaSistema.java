@@ -1,9 +1,5 @@
 package tests;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -11,6 +7,9 @@ import model.*;
 
 /**
  * Classe para teste do sistema
+ * 
+ * @author Wesley Claudino Rodrigues - 0014950
+ * @author Matheus André Pereira Góes - 00
  */
 
 public class RodaSistema {
@@ -61,15 +60,9 @@ public class RodaSistema {
 				Curso cursos = new Curso();
 
 				// Inserção de dados do curso
-				System.out.println(JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?"));
-				if (JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?") == JOptionPane.OK_OPTION) {
-					cursos.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
-					cursos.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
-					continua = true;
-				} else if (JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?") == JOptionPane.NO_OPTION || JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo curso?") == JOptionPane.CANCEL_OPTION) {
-					continua = false;
-				}
-
+				cursos.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
+				cursos.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
+				System.out.println(cursos.getDisciplinas());
 				continua = true;
 			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
 				continua = false;

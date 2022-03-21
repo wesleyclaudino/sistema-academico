@@ -8,13 +8,21 @@ public class Curso {
 	List<String> cursos = new ArrayList<String>();
 	private String nomeDoCurso;
 	private int codCurso;
-	
+
 	public void adicionarCursos(String curso) {
-		cursos.add(curso);
+		if (cursos.contains(curso)) {
+			System.out.println("Curso, já existe.");
+		} else {
+			cursos.add(curso);
+		}
 	}
 
 	public void adicionarDisciplina(String disciplina) {
-		disciplinas.add(disciplina);
+		if(disciplinas.contains(disciplina)) {
+			System.out.println("Disciplina já adicionada.");
+		}else {
+			disciplinas.add(disciplina);
+		}
 	}
 
 	public String getNomeDoCurso() {
@@ -32,12 +40,12 @@ public class Curso {
 	public void setCodCurso(int codCurso) {
 		this.codCurso = codCurso;
 	}
-	
-	public List<String> getDisciplinas(){
+
+	public List<String> getDisciplinas() {
 		return disciplinas;
 	}
-	
-	public List<String> getCursos(){
+
+	public List<String> getCursos() {
 		return cursos;
 	}
 }
