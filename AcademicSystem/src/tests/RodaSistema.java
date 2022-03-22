@@ -1,5 +1,8 @@
 package tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -43,12 +46,17 @@ public class RodaSistema {
 				aluno.setNota2(Double.parseDouble(JOptionPane.showInputDialog("Nota do segundo bimestre: ")));
 				aluno.setNotaSem();
 
+				aluno.listarCursos();
+				aluno.listarDisciplinas();
 				continua = true;
 			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
 				continua = false;
 			}
 		} while (continua == true && opcao != JOptionPane.CANCEL_OPTION || opcao != JOptionPane.NO_OPTION);
 
+		List<Curso> cursos = new ArrayList<Curso>();
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		
 		// Fluxo de inserção do Curso
 		do {
 			// Tela inicial
@@ -56,13 +64,20 @@ public class RodaSistema {
 					JOptionPane.YES_NO_CANCEL_OPTION);
 
 			if (opcao == JOptionPane.OK_OPTION) {
+				
 				// Instanciando o objeto para uso
-				Curso cursos = new Curso();
-
+				Curso curso = new Curso(JOptionPane.showInputDialog("Insira um novo curso: "),
+						Integer.parseInt(JOptionPane.showInputDialog("Insira o código do curso: ")));
+				
 				// Inserção de dados do curso
-				cursos.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
-				cursos.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
-				System.out.println(cursos.getDisciplinas());
+				
+				curso.adicionarCursos(cursos, curso);
+				curso.listarCursos(cursos);
+				
+				Disciplina disciplina = new Disciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "),
+						Integer.parseInt(JOptionPane.showInputDialog("Insira o código da disciplina: ")));
+				curso.adicionarDisciplina(disciplinas, disciplina);
+				curso.listarDisciplinas(disciplinas);
 				continua = true;
 			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
 				continua = false;

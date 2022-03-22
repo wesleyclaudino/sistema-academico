@@ -11,7 +11,7 @@ public class Aluno {
 	private double nota1;
 	private double nota2;
 	private double notaSem;
-	
+
 	public void adicionarCursos(String curso) {
 		if (cursos.contains(curso)) {
 			System.out.println("Curso, já adicionado.");
@@ -20,11 +20,25 @@ public class Aluno {
 		}
 	}
 
+	public void listarCursos() {
+		System.out.println("Cursos: ");
+		for (int i = 0; i < cursos.size(); i++) {
+			System.out.println(cursos.get(i));
+		}
+	}
+
 	public void adicionarDisciplina(String disciplina) {
-		if(disciplinas.contains(disciplina)) {
+		if (disciplinas.contains(disciplina)) {
 			System.out.println("Disciplina já adicionada.");
-		}else {
+		} else {
 			disciplinas.add(disciplina);
+		}
+	}
+
+	public void listarDisciplinas() {
+		System.out.println("Disciplinas do curso: ");
+		for (int i = 0; i < disciplinas.size(); i++) {
+			System.out.println(disciplinas.get(i));
 		}
 	}
 
@@ -66,12 +80,5 @@ public class Aluno {
 
 	public void setNotaSem() {
 		this.notaSem = (this.nota1 + this.nota2) / 2;
-	}
-	
-	public List<String> getCursos(){
-		return cursos;
-	}
-	public List<String> getDisciplinas(){
-		return disciplinas;
 	}
 }
