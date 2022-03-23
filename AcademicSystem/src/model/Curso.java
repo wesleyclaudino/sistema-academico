@@ -1,9 +1,9 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import controller.ListaDisciplinasControladora;
 
 public class Curso {
+	ListaDisciplinasControladora listaDeDisciplinas = new ListaDisciplinasControladora();
 	private String nomeDoCurso;
 	private int codCurso;
 
@@ -12,32 +12,17 @@ public class Curso {
 		this.codCurso = codCurso;
 	}
 
-	public void adicionarCursos(List<Curso> cursos, Curso curso) {
-		if (cursos.contains(curso)) {
-			System.out.println("Curso, já existe.");
-		} else {
-			cursos.add(curso);
-		}
-	}
-
-	public void listarCursos(List<Curso> cursos) {
-		for (int i = 0; i < cursos.size(); i++) {
-			System.out.println(cursos.get(i).getNomeDoCurso());
-		}
-	}
-
-	public void adicionarDisciplina(List<Disciplina> disciplinas, Disciplina disciplina) {
-		if (disciplinas.contains(disciplina)) {
+	public void adicionarDisciplina(Disciplina disciplina) {
+		if (listaDeDisciplinas.contains(disciplina)) {
 			System.out.println("Disciplina já adicionada.");
 		} else {
-			disciplinas.add(disciplina);
+			listaDeDisciplinas.add(disciplina);
 		}
 	}
 
-	public void listarDisciplinas(List<Disciplina> disciplinas) {
-		System.out.println("Disciplinas do curso: ");
-		for (int i = 0; i < disciplinas.size(); i++) {
-			System.out.println(disciplinas.get(i).getNomeDaDisciplina());
+	public void listarDisciplinas() {
+		for (int i = 0; i < listaDeDisciplinas.size(); i++) {
+			System.out.println(listaDeDisciplinas.get(i).getNomeDaDisciplina());
 		}
 	}
 
