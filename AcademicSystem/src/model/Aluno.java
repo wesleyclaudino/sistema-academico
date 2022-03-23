@@ -11,6 +11,11 @@ public class Aluno {
 	private double nota1;
 	private double nota2;
 	private double notaSem;
+	
+	public Aluno(String nomeDoAluno, int matricula) {
+		this.nomeDoAluno = nomeDoAluno;
+		this.matricula = matricula;
+	}
 
 	public void adicionarCursos(String curso) {
 		if (cursos.contains(curso)) {

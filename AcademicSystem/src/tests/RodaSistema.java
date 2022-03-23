@@ -3,6 +3,7 @@ package tests;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import controller.ListaAlunosControladora;
 import controller.ListaCursosControladora;
 import model.*;
 
@@ -17,7 +18,7 @@ public class RodaSistema {
 	public static void main(String[] args) {
 		boolean continua = false;
 		int opcao;
-		int opcaoDisc;
+		int opcaoReuso;
 
 		// Mudança de nomes das opções do JOptionPaneConfirm
 		UIManager.put("OptionPane.yesButtonText", "Sim");
@@ -25,6 +26,7 @@ public class RodaSistema {
 		UIManager.put("OptionPane.cancelButtonText", "Cancelar");
 		UIManager.put("OptionPane.okButtonText", "Enviar");
 
+		// Criação da lista de cursos
 		ListaCursosControladora listaDeCursos = new ListaCursosControladora();
 
 		// Fluxo de inserção dos cursos e suas disciplinas
@@ -39,29 +41,28 @@ public class RodaSistema {
 						Integer.parseInt(JOptionPane.showInputDialog("Insira o código do curso: ")));
 
 				listaDeCursos.adicionarCursos(curso);
-				System.out.println("Cursos: ");
-				listaDeCursos.listarCursos();
 
 				// Inserção de dados das disciplinas do curso
 				do {
-					opcaoDisc = JOptionPane.showConfirmDialog(null, "Deseja adicionar uma disciplina ao curso?",
+					opcaoReuso = JOptionPane.showConfirmDialog(null, "Deseja adicionar uma disciplina ao curso?",
 							"Disciplina do Curso", JOptionPane.YES_NO_CANCEL_OPTION);
 
-					if (opcaoDisc == JOptionPane.OK_OPTION) {
+					if (opcaoReuso == JOptionPane.OK_OPTION) {
 						Disciplina disciplina = new Disciplina(
 								JOptionPane.showInputDialog("Insira uma nova disciplina: "),
 								Integer.parseInt(JOptionPane.showInputDialog("Insira o código da disciplina: ")));
 
 						curso.adicionarDisciplina(disciplina);
-						System.out.println("Disciplinas do curso: ");
-						curso.listarDisciplinas();
 					}
-				} while (opcaoDisc == JOptionPane.OK_OPTION);
+				} while (opcaoReuso == JOptionPane.OK_OPTION);
 				continua = true;
 			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
 				continua = false;
 			}
 		} while (continua == true && opcao != JOptionPane.CANCEL_OPTION || opcao != JOptionPane.NO_OPTION);
+
+		// Criação da lista de alunos
+		ListaAlunosControladora listaDeAlunos = new ListaAlunosControladora();
 
 		// Fluxo de inserção do Aluno
 		do {
@@ -70,20 +71,37 @@ public class RodaSistema {
 					JOptionPane.YES_NO_CANCEL_OPTION);
 
 			if (opcao == JOptionPane.OK_OPTION) {
-				// Instanciando o objeto para uso
-				Aluno aluno = new Aluno();
-
-				// Inserção de dados do aluno
-				aluno.setNomeDoAluno(JOptionPane.showInputDialog("Digite seu nome: "));
-				aluno.setMatricula(Integer.parseInt(JOptionPane.showInputDialog("Digite sua matrícula: ")));
-				aluno.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
-				aluno.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
+				// Inserção de dados obrigatórios do aluno
+				Aluno aluno = new Aluno(JOptionPane.showInputDialog("Digite seu nome: "),
+						Integer.parseInt(JOptionPane.showInputDialog("Digite sua matrícula: ")));
+				
+				// Inserção de dados adicionais do aluno
 				aluno.setNota1(Double.parseDouble(JOptionPane.showInputDialog("Nota do primeiro bimestre: ")));
 				aluno.setNota2(Double.parseDouble(JOptionPane.showInputDialog("Nota do segundo bimestre: ")));
 				aluno.setNotaSem();
 
-				aluno.listarCursos();
-				aluno.listarDisciplinas();
+				// Inserção de dados de curso do aluno
+				do {
+					opcaoReuso = JOptionPane.showConfirmDialog(null, "Deseja um curso ao aluno? ", "Curso do Aluno",
+							JOptionPane.YES_NO_CANCEL_OPTION);
+					
+					if (opcaoReuso == JOptionPane.OK_OPTION) {
+						aluno.adicionarCursos(JOptionPane.showInputDialog("Insira um novo curso: "));
+					}
+				} while (opcaoReuso == JOptionPane.OK_OPTION);
+				
+				// Inserção de dados de disciplinas do aluno
+				do {
+					opcaoReuso = JOptionPane.showConfirmDialog(null, "Deseja uma disciplina ao aluno? ", "Disciplina do Aluno",
+							JOptionPane.YES_NO_CANCEL_OPTION);
+					if (opcaoReuso == JOptionPane.OK_OPTION) {
+						aluno.adicionarDisciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "));
+					}
+				} while (opcaoReuso == JOptionPane.OK_OPTION);		
+
+				// Adicionando o aluno na lista
+				listaDeAlunos.adicionarAlunos(aluno);
+				
 				continua = true;
 			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
 				continua = false;

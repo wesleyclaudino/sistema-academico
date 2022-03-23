@@ -2,25 +2,24 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Curso;
 
 public class ListaCursosControladora extends ArrayList<Curso> {
-	private static final long serialVersionUID = 1757225109110010500L;
-	
+	private static final long serialVersionUID = 1L;
 	List<Curso> cursos = new ArrayList<Curso>();
-	
+
 	public void adicionarCursos(Curso curso) {
-		if (this.cursos.contains(curso)) {
-			System.out.println("Curso, já existe.");
+		if (cursos.contains(curso)) {
+			System.out.println("Curso já existe.");
 		} else {
-			this.cursos.add(curso);
+			cursos.add(curso);
 		}
 	}
 
-	public void listarCursos() {
-		for (int i = 0; i < this.cursos.size(); i++) {
-			System.out.println(this.cursos.get(i).getNomeDoCurso());
+	public String listarCursos() {
+		for (int i = 0; i < cursos.size(); i++) {
+			return cursos.get(i).getNomeDoCurso();
 		}
+		return "";
 	}
 }

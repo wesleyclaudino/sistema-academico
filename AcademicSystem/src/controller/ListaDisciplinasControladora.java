@@ -6,7 +6,7 @@ import java.util.List;
 import model.Disciplina;
 
 public class ListaDisciplinasControladora extends ArrayList<Disciplina> {
-	private static final long serialVersionUID = -7570908842792631360L;
+	private static final long serialVersionUID = 1L;
 	
 	List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 }
