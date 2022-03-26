@@ -5,6 +5,7 @@ import javax.swing.UIManager;
 
 import controller.ListaAlunosControladora;
 import controller.ListaCursosControladora;
+import controller.ListaDisciplinasControladora;
 import model.*;
 
 /**
@@ -25,6 +26,26 @@ public class RodaSistema {
 		UIManager.put("OptionPane.noButtonText", "Não");
 		UIManager.put("OptionPane.cancelButtonText", "Cancelar");
 		UIManager.put("OptionPane.okButtonText", "Enviar");
+		
+		// Criação da lista de disciplinas
+		ListaDisciplinasControladora listaDeDisciplinas = new ListaDisciplinasControladora();
+		
+		// Fluxo de inserção das disciplinas
+		do {
+			opcao = JOptionPane.showConfirmDialog(null, "Deseja adicionar uma disciplina? ", "Disciplina",
+					JOptionPane.YES_NO_CANCEL_OPTION);
+
+			if (opcao == JOptionPane.OK_OPTION) {
+				// Inserção de dados da disciplina
+				Disciplina disciplina = new Disciplina(JOptionPane.showInputDialog("Insira uma nova disciplina: "),
+						Integer.parseInt(JOptionPane.showInputDialog("Insira o código da disciplina: ")));				
+				listaDeDisciplinas.adicionarDisciplinas(disciplina);
+				
+				continua = true;
+			} else if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
+				continua = false;
+			}
+		}while(continua == true && opcao != JOptionPane.CANCEL_OPTION || opcao != JOptionPane.NO_OPTION);
 
 		// Criação da lista de cursos
 		ListaCursosControladora listaDeCursos = new ListaCursosControladora();
@@ -41,13 +62,17 @@ public class RodaSistema {
 						Integer.parseInt(JOptionPane.showInputDialog("Insira o código do curso: ")));
 
 				listaDeCursos.adicionarCursos(curso);
-
+				
 				// Inserção de dados das disciplinas do curso
 				do {
 					opcaoReuso = JOptionPane.showConfirmDialog(null, "Deseja adicionar uma disciplina ao curso?",
 							"Disciplina do Curso", JOptionPane.YES_NO_CANCEL_OPTION);
 
 					if (opcaoReuso == JOptionPane.OK_OPTION) {
+						Object[] opcoes = {listaDeDisciplinas};
+						JOptionPane.showInputDialog(null , "Escolha a disciplina: " , "Disciplinas do curso" , 
+								JOptionPane.QUESTION_MESSAGE , null , opcoes , listaDeDisciplinas.get(0));
+						
 						Disciplina disciplina = new Disciplina(
 								JOptionPane.showInputDialog("Insira uma nova disciplina: "),
 								Integer.parseInt(JOptionPane.showInputDialog("Insira o código da disciplina: ")));

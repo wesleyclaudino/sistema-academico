@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.Curso;
 
 public class ListaCursosControladora extends ArrayList<Curso> {

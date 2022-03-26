@@ -4,6 +4,9 @@ public class Disciplina {
 	private String nomeDaDisciplina;
 	private int codDisciplina;
 	
+	public Disciplina(String nomeDaDisciplina) {
+		this.nomeDaDisciplina = nomeDaDisciplina;
+	}
 	public Disciplina(String nomeDaDisciplina, int codDisciplina) {
 		this.nomeDaDisciplina = nomeDaDisciplina;
 		this.codDisciplina = codDisciplina;
