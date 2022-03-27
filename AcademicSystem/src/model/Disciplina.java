@@ -1,5 +1,9 @@
 package model;
 
+/** 
+ * @author Wesley Claudino Rodrigues - 0014950
+ * @author Matheus André Pereira Góes - 0015893
+ */
 public class Disciplina {
 	private String nomeDaDisciplina;
 	private int codDisciplina;

@@ -2,6 +2,10 @@ package model;
 
 import controller.ListaDisciplinasControladora;
 
+/** 
+ * @author Wesley Claudino Rodrigues - 0014950
+ * @author Matheus André Pereira Góes - 0015893
+ */
 public class Curso {
 	ListaDisciplinasControladora listaDeDisciplinas = new ListaDisciplinasControladora();
 	private String nomeDoCurso;
@@ -10,6 +14,10 @@ public class Curso {
 	public Curso(String nomeDoCurso, int codCurso) {
 		this.nomeDoCurso = nomeDoCurso;
 		this.codCurso = codCurso;
+	}
+	public Curso(Curso curso) {
+		setNomeDoCurso(curso.getNomeDoCurso());
+		setCodCurso(curso.getCodCurso());
 	}
 
 	public void adicionarDisciplina(Disciplina disciplina) {

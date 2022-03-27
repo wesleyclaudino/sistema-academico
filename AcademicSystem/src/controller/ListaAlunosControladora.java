@@ -5,6 +5,10 @@ import java.util.List;
 
 import model.Aluno;
 
+/** 
+ * @author Wesley Claudino Rodrigues - 0014950
+ * @author Matheus André Pereira Góes - 0015893
+ */
 public class ListaAlunosControladora extends ArrayList<Aluno> {
 	private static final long serialVersionUID = 1L;
 	List<Aluno> alunos = new ArrayList<Aluno>();

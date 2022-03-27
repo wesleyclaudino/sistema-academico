@@ -5,6 +5,10 @@ import java.util.List;
 
 import model.Disciplina;
 
+/** 
+ * @author Wesley Claudino Rodrigues - 0014950
+ * @author Matheus André Pereira Góes - 0015893
+ */
 public class ListaDisciplinasControladora extends ArrayList<Disciplina> {
 	private static final long serialVersionUID = 1L;
 
@@ -36,5 +40,11 @@ public class ListaDisciplinasControladora extends ArrayList<Disciplina> {
 
 	public Disciplina recuperarDisciplina(int i) {
 		return disciplinas.get(i);
+	}
+	
+	public void listarDisciplinas() {
+		for (int i = 0; i < disciplinas.size(); i++) {
+			System.out.println(disciplinas.get(i).getNomeDaDisciplina());
+		}
 	}
 }

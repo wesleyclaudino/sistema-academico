@@ -1,12 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import controller.ListaCursosControladora;
 import controller.ListaDisciplinasControladora;
 
+/** 
+ * @author Wesley Claudino Rodrigues - 0014950
+ * @author Matheus André Pereira Góes - 0015893
+ */
 public class Aluno {
 	ListaDisciplinasControladora listaDeDisciplinas = new ListaDisciplinasControladora();
+	ListaCursosControladora listaDeCursos = new ListaCursosControladora();
 	private String nomeDoAluno;
 	private int matricula;
 	private double nota1;
@@ -17,21 +20,14 @@ public class Aluno {
 		this.nomeDoAluno = nomeDoAluno;
 		this.matricula = matricula;
 	}
-
-//	public void adicionarCursos(String curso) {
-//		if (cursos.contains(curso)) {
-//			System.out.println("Curso, já adicionado.");
-//		} else {
-//			cursos.add(curso);
-//		}
-//	}
-//
-//	public void listarCursos() {
-//		System.out.println("Cursos: ");
-//		for (int i = 0; i < cursos.size(); i++) {
-//			System.out.println(cursos.get(i));
-//		}
-//	}
+	
+	public void adicionarCurso(Curso curso) {
+		if (listaDeCursos.contains(curso)) {
+			System.out.println("Curso já adicionado.");
+		} else {
+			listaDeCursos.add(curso);
+		}
+	}
 
 	public void adicionarDisciplina(Disciplina disciplina) {
 		if (listaDeDisciplinas.contains(disciplina)) {
