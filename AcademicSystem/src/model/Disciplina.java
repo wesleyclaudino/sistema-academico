@@ -11,6 +11,10 @@ public class Disciplina {
 		this.nomeDaDisciplina = nomeDaDisciplina;
 		this.codDisciplina = codDisciplina;
 	}
+	public Disciplina(Disciplina disciplina) {
+		setNomeDaDisciplina(disciplina.getNomeDaDisciplina());
+		setCodDisciplina(disciplina.getCodDisciplina());
+	}
 
 	public String getNomeDaDisciplina() {
 		return nomeDaDisciplina;

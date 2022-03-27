@@ -3,9 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.ListaDisciplinasControladora;
+
 public class Aluno {
-	List<String> disciplinas = new ArrayList<String>();
-	List<String> cursos = new ArrayList<String>();
+	ListaDisciplinasControladora listaDeDisciplinas = new ListaDisciplinasControladora();
 	private String nomeDoAluno;
 	private int matricula;
 	private double nota1;
@@ -17,33 +18,26 @@ public class Aluno {
 		this.matricula = matricula;
 	}
 
-	public void adicionarCursos(String curso) {
-		if (cursos.contains(curso)) {
-			System.out.println("Curso, já adicionado.");
-		} else {
-			cursos.add(curso);
-		}
-	}
+//	public void adicionarCursos(String curso) {
+//		if (cursos.contains(curso)) {
+//			System.out.println("Curso, já adicionado.");
+//		} else {
+//			cursos.add(curso);
+//		}
+//	}
+//
+//	public void listarCursos() {
+//		System.out.println("Cursos: ");
+//		for (int i = 0; i < cursos.size(); i++) {
+//			System.out.println(cursos.get(i));
+//		}
+//	}
 
-	public void listarCursos() {
-		System.out.println("Cursos: ");
-		for (int i = 0; i < cursos.size(); i++) {
-			System.out.println(cursos.get(i));
-		}
-	}
-
-	public void adicionarDisciplina(String disciplina) {
-		if (disciplinas.contains(disciplina)) {
+	public void adicionarDisciplina(Disciplina disciplina) {
+		if (listaDeDisciplinas.contains(disciplina)) {
 			System.out.println("Disciplina já adicionada.");
 		} else {
-			disciplinas.add(disciplina);
-		}
-	}
-
-	public void listarDisciplinas() {
-		System.out.println("Disciplinas do curso: ");
-		for (int i = 0; i < disciplinas.size(); i++) {
-			System.out.println(disciplinas.get(i));
+			listaDeDisciplinas.add(disciplina);
 		}
 	}
 

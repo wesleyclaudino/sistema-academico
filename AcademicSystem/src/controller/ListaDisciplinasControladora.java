@@ -17,11 +17,21 @@ public class ListaDisciplinasControladora extends ArrayList<Disciplina> {
 			disciplinas.add(disciplina);
 		}
 	}
-
-	public void listarDisciplinas() {
+	
+	public String[] nomesNoVetor() {
+		String[] vetor = new String[disciplinas.size()];
 		for (int i = 0; i < disciplinas.size(); i++) {
-			System.out.println(recuperarDisciplina(i).getNomeDaDisciplina());
+			vetor[i] = disciplinasNoVetor()[i].getNomeDaDisciplina();
 		}
+		return vetor;
+	}
+
+	public Disciplina[] disciplinasNoVetor() {
+		Disciplina[] opcoes = new Disciplina[disciplinas.size()];
+		for (int i = 0; i < disciplinas.size(); i++) {
+			opcoes[i] = recuperarDisciplina(i);
+		}
+		return opcoes;
 	}
 
 	public Disciplina recuperarDisciplina(int i) {
